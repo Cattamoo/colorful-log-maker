@@ -2,6 +2,7 @@ import React, {CSSProperties, useState} from 'react';
 import Line from "./components/Line";
 import Editor from "./components/Editor";
 import {ItemType} from "./components/Item";
+import PlusButton from "./components/common/PlusButton";
 
 const defaultItem = { text: '', style: {} };
 
@@ -64,7 +65,7 @@ export default function App() {
 					{
 						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
 					}
-					<button onClick={handleAddLine}>+</button>
+					<PlusButton onClick={handleAddLine} />
 				</ul>
 				<Editor item={lines[current.line][current.item]} edit={handleEditItem}/>
 			</div>

@@ -17,8 +17,8 @@ type Props = ItemType & {
 
 export default function Item({ id, text, style = {}, current, setCurrent }: Props) {
 	return (
-		<li className={`flex items-end border-2 p-1 ${current.id === id ? 'border-blue-500' : ''}`} style={style} onClick={() => setCurrent(id)}>
-			<pre>{text}</pre>
+		<li className={`flex items-end border-2 ${current.id === id ? 'border-blue-500' : ''}`} onClick={() => setCurrent(id)}>
+			<pre className="self-end" style={style}>{text}</pre>
 		</li>
 	);
 }
