@@ -50,18 +50,27 @@ export default function App() {
 			})
 		})
 	}
+	const handleCopy = () => {
+		const text = consoleText();
+		navigator.clipboard
+			.writeText(text)
+			.then(() => {
+				console.log(text);
+			})
+		;
+	}
 	const consoleText = () => {
-		const text = lines.map((line) => line.map((item) => `%c${item.text}`).join('')).join('\\n');
-		const style = lines.map((line) => line.map((item) => `"${styleFormatter(item.style)}"`).join(',')).join(',');
+		const text = makeTextString();
+		const style = makeStyleString();
 		return `console.log("${text}",${style})`;
 	}
-	const styleFormatter = (style: CSSProperties | undefined) => {
-		return style ? `${style.color ? `color: ${style.color};` : ''}${style.backgroundColor ? `background-color: ${style.backgroundColor};` : ''}${style.fontWeight ? `font-weight: ${style.fontWeight};` : ''}${style.fontSize ? `font-size: ${style.fontSize};` : ''}` : '';
-	}
+	const makeTextString = () => lines.map((line) => line.map((item) => `%c${item.text}`).join('')).join('\\n');
+	const makeStyleString = () => lines.map((line) => line.map((item) => `"${styleFormatter(item.style)}"`).join(',')).join(',');
+	const styleFormatter = (style: CSSProperties | undefined) => style ? `${style.color ? `color: ${style.color};` : ''}${style.backgroundColor ? `background-color: ${style.backgroundColor};` : ''}${style.fontWeight ? `font-weight: ${style.fontWeight};` : ''}${style.fontSize ? `font-size: ${style.fontSize};` : ''}` : '';
 	return (
-		<main>
-			<div className="flex">
-				<ul className="flex-1 flex flex-col gap-1 p-1">
+		<main className="flex flex-col lg:flex-row">
+			<div className="flex flex-1 overflow-hidden">
+				<ul className="flex-1 flex flex-col gap-1 p-1 overflow-auto">
 					{
 						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
 					}
@@ -69,8 +78,11 @@ export default function App() {
 				</ul>
 				<Editor item={lines[current.line][current.item]} edit={handleEditItem}/>
 			</div>
-			<div className="break-words">
-				{consoleText()}
+			<div className="w-full flex flex-col lg:w-1/3 xl:w-1/2">
+				<div className="break-words">
+					{consoleText()}
+				</div>
+				<button onClick={handleCopy}>Copy</button>
 			</div>
 		</main>
 	);
