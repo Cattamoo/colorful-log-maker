@@ -3,28 +3,32 @@ import Line from "./components/Line";
 import Editor from "./components/Editor";
 import {ItemType} from "./components/Item";
 
+const defaultItem = { text: '', style: {} };
+
 export default function App() {
-	const [current, setCurrent] = useState({ line: 0, item: 0 })
+	const [current, setCurrent] = useState({ id: `${new Date().getTime()}`, line: 0, item: 0 })
 	const [lines, setLines] = useState<ItemType[][]>([
 		[
-			{ id: `${new Date().getTime()}`, text: '', style: {} }
+			{ ...defaultItem, id: `${new Date().getTime()}` }
 		]
 	]);
 	const handleChangeCurrent = (id: string) => {
-		lines.find((line, lineIdx) => line.find((item, itemIdx) => item.id === id && setCurrent({ line: lineIdx, item: itemIdx })))
+		lines.find((line, lineIdx) => line.find((item, itemIdx) => item.id === id && setCurrent({ id, line: lineIdx, item: itemIdx })))
 	}
 	const handleAddLine = () => {
+		const id = `${new Date().getTime()}`;
 		const lineArr = lines;
-		lineArr.push([{ id: `${new Date().getTime()}`, text: '', style: {} }]);
+		lineArr.push([{ ...defaultItem, id }]);
 		setLines(lineArr);
-		setCurrent({ line: lineArr.length - 1, item: 0 });
+		setCurrent({ id, line: lineArr.length - 1, item: 0 });
 	}
 	const handleAddItem = (addedLine: number) => {
+		const id = `${new Date().getTime()}`;
 		const lineArr = lines;
 		lineArr.map((line, index) => {
 			if(index === addedLine) {
-				line.push({ id: `${new Date().getTime()}`, text: '', style: {} });
-				setCurrent({ line: addedLine, item: line.length - 1 });
+				line.push({ ...defaultItem, id });
+				setCurrent({ id, line: addedLine, item: line.length - 1 });
 			}
 			return line;
 		})
@@ -58,7 +62,7 @@ export default function App() {
 			<div className="flex">
 				<ul className="flex-1 flex flex-col">
 					{
-						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} setCurrent={handleChangeCurrent} />)
+						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
 					}
 					<button onClick={handleAddLine}>+</button>
 				</ul>
