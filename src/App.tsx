@@ -61,7 +61,7 @@ export default function App() {
 	return (
 		<main>
 			<div className="flex">
-				<ul className="flex-1 flex flex-col">
+				<ul className="flex-1 flex flex-col gap-1 p-1">
 					{
 						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
 					}
