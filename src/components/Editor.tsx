@@ -22,7 +22,7 @@ export default function Editor({ item, edit }: Props) {
 			<Input name="text" title="텍스트" value={item.text} onChange={handleTextEdit} />
 			<Input name="color" type="color" title="글자색" value={`${item.style?.color || '#000000'}`} onChange={handleStyleEdit} />
 			<Input name="backgroundColor" type="color" title="배경색" value={`${item.style?.backgroundColor || '#ffffff'}`} onChange={handleStyleEdit} />
-			<Input name="fontSize" title="폰트크기" value={`${item.style?.fontSize != null ? item.style?.fontSize : '1rem'}`} onChange={handleStyleEdit} />
+			<Input name="fontSize" title="폰트크기" value={`${item.style?.fontSize != null ? item.style?.fontSize : '0.75rem'}`} onChange={handleStyleEdit} />
 			<Input name="fontWeight" title="폰트두께" value={`${item.style?.fontWeight != null ? item.style?.fontWeight : 'normal'}`} onChange={handleStyleEdit} />
 		</div>
 	);
