@@ -25,15 +25,23 @@ export default function App() {
 	}
 	const handleAddItem = (addedLine: number) => {
 		const id = `${new Date().getTime()}`;
-		const lineArr = lines;
-		lineArr.map((line, index) => {
-			if(index === addedLine) {
-				line.push({ ...defaultItem, id });
-				setCurrent({ id, line: addedLine, item: line.length - 1 });
-			}
-			return line;
-		})
-		setLines(lineArr);
+		setLines(
+			lines.map((line, index) => {
+				if(index === addedLine) {
+					line.push({ ...defaultItem, id });
+					setCurrent({ id, line: addedLine, item: line.length - 1 });
+				}
+				return line;
+			})
+		);
+	}
+	const handleDeleteItem = (id: string) => {
+		if(lines.length === 1 && lines[0].length === 1) {
+			console.debug('얘는 삭제할 수 없다!!');
+			return;
+		}
+		setLines(lines.map((line) => line.filter((item) => item.id !== id)).filter((line) => line.length !== 0));
+		setCurrent({ id: lines[0][0].id,item: 0, line: 0 });
 	}
 	const handleEditItem = (key: keyof ItemType, value: string) => {
 		setLines(prev => {
@@ -76,7 +84,7 @@ export default function App() {
 					}
 					<PlusButton onClick={handleAddLine} />
 				</ul>
-				<Editor item={lines[current.line][current.item]} edit={handleEditItem}/>
+				<Editor item={lines[current.line][current.item]} edit={handleEditItem} remove={handleDeleteItem} />
 			</div>
 			<div className="w-full flex flex-col lg:w-1/3 xl:w-1/2">
 				<div className="break-words">
