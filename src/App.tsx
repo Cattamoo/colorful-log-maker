@@ -64,7 +64,7 @@ export default function App() {
 		const style = makeStyleString();
 		return `console.log("${text}",${style})`;
 	}
-	const makeTextString = () => lines.map((line) => line.map((item) => `%c${item.text}`).join('')).join('\\n');
+	const makeTextString = () => lines.map((line) => line.map((item) => `%c${item.text.replace(/"/g, '\\"')}`).join('')).join('\\n');
 	const makeStyleString = () => lines.map((line) => line.map((item) => `"${styleFormatter(item.style)}"`).join(',')).join(',');
 	const styleFormatter = (style: CSSProperties | undefined) => style ? `${style.color ? `color: ${style.color};` : ''}${style.backgroundColor ? `background-color: ${style.backgroundColor};` : ''}${style.fontWeight ? `font-weight: ${style.fontWeight};` : ''}${style.fontSize ? `font-size: ${style.fontSize};` : ''}` : '';
 	return (
