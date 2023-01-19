@@ -14,3 +14,9 @@ root.render(
 );
 
 reportWebVitals();
+
+console.log(`
+%c %c CATTAMOO %c      %chttps://cattamoo.github.io/colorful-log-maker
+%c %cCOLORFUL LOG MAKER PROJECT
+`,"","color: #fff947;background-color: #000657;font-size: 2rem;","","","","color: #ffffff;background-color: #ffc72e;font-size: 0.775rem;"
+);
