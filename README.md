@@ -1,5 +1,8 @@
 # Colorful log maker
 
+<img width="740" alt="image" src="https://user-images.githubusercontent.com/87294942/226336432-bcbb4c36-15f5-4001-a8ab-759b625380fa.png">
+
+
 ## 목표 🏆
 
 - console.log 커스터마이징 구현
