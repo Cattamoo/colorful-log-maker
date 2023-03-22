@@ -3,6 +3,7 @@ import Line from "./components/Line";
 import Editor from "./components/Editor";
 import {ItemType} from "./components/Item";
 import PlusButton from "./components/common/PlusButton";
+import Header from "./components/Header";
 
 const defaultItem = { text: '', style: {} };
 
@@ -76,22 +77,25 @@ export default function App() {
 	const makeStyleString = () => lines.map((line) => line.map((item) => `"${styleFormatter(item.style)}"`).join(',')).join(',');
 	const styleFormatter = (style: CSSProperties | undefined) => style ? `${style.color ? `color: ${style.color};` : ''}${style.backgroundColor ? `background-color: ${style.backgroundColor};` : ''}${style.fontWeight ? `font-weight: ${style.fontWeight};` : ''}${style.fontSize ? `font-size: ${style.fontSize};` : ''}` : '';
 	return (
-		<main className="flex flex-col lg:flex-row">
-			<div className="flex flex-1 overflow-hidden">
-				<ul className="flex-1 flex flex-col gap-1 p-1 overflow-auto">
-					{
-						lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
-					}
-					<PlusButton onClick={handleAddLine} />
-				</ul>
-				<Editor item={lines[current.line][current.item]} edit={handleEditItem} remove={handleDeleteItem} />
-			</div>
-			<div className="w-full flex flex-col lg:w-1/3 xl:w-1/2">
-				<div className="break-words">
-					{consoleText()}
+		<>
+			<Header />
+			<main className="flex flex-col lg:flex-row">
+				<div className="flex flex-1 overflow-hidden">
+					<ul className="flex-1 flex flex-col gap-1 p-1 overflow-auto">
+						{
+							lines.map((line, index) => <Line key={index} items={line} addLine={() => handleAddItem(index)} current={current} setCurrent={handleChangeCurrent} />)
+						}
+						<PlusButton onClick={handleAddLine} />
+					</ul>
+					<Editor item={lines[current.line][current.item]} edit={handleEditItem} remove={handleDeleteItem} />
 				</div>
-				<button onClick={handleCopy}>Copy</button>
-			</div>
-		</main>
+				<div className="w-full flex flex-col lg:w-1/3 xl:w-1/2">
+					<div className="break-words">
+						{consoleText()}
+					</div>
+					<button onClick={handleCopy}>Copy</button>
+				</div>
+			</main>
+		</>
 	);
 }
