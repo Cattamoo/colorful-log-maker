@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/colorful-log-maker/static/css/main.d4fda959.css",
-    "main.js": "/colorful-log-maker/static/js/main.9f28768e.js",
+    "main.css": "/colorful-log-maker/static/css/main.87b79976.css",
+    "main.js": "/colorful-log-maker/static/js/main.e8014c90.js",
     "static/js/787.6b312210.chunk.js": "/colorful-log-maker/static/js/787.6b312210.chunk.js",
     "index.html": "/colorful-log-maker/index.html",
-    "main.d4fda959.css.map": "/colorful-log-maker/static/css/main.d4fda959.css.map",
-    "main.9f28768e.js.map": "/colorful-log-maker/static/js/main.9f28768e.js.map",
+    "main.87b79976.css.map": "/colorful-log-maker/static/css/main.87b79976.css.map",
+    "main.e8014c90.js.map": "/colorful-log-maker/static/js/main.e8014c90.js.map",
     "787.6b312210.chunk.js.map": "/colorful-log-maker/static/js/787.6b312210.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d4fda959.css",
-    "static/js/main.9f28768e.js"
+    "static/css/main.87b79976.css",
+    "static/js/main.e8014c90.js"
   ]
 }
