@@ -79,7 +79,7 @@ export default function App() {
 	return (
 		<>
 			<Header />
-			<main className="flex flex-col lg:flex-row">
+			<main className="flex flex-col">
 				<div className="flex flex-1 overflow-hidden">
 					<ul className="flex-1 flex flex-col gap-1 p-1 overflow-auto">
 						{
